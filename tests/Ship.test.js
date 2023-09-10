@@ -18,7 +18,11 @@ describe('Ship()', () => {
     assert.ok(Ship('carrier').hit);
   });
 
-  it('num of parts according to type', () => {
-    assert.ok(Ship('carrier').hit);
+  it('right num of workingParts according to type', () => {
+    assert.equal(Ship('Carrier').workingParts, 5);
+    assert.equal(Ship('Battleship').workingParts, 4);
+    assert.equal(Ship('Destroyer').workingParts, 3);
+    assert.equal(Ship('Submarine').workingParts, 3);
+    assert.equal(Ship('Patrol Boat').workingParts, 2);
   });
 });

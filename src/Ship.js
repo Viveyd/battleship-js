@@ -20,30 +20,35 @@ function hit() {
 function Carrier() {
   return {
     type: 'Carrier',
+    workingParts: 5,
   };
 }
 
 function Battleship() {
   return {
     type: 'Battleship',
+    workingParts: 4,
   };
 }
 
 function Destroyer() {
   return {
     type: 'Destroyer',
+    workingParts: 3,
   };
 }
 
 function Submarine() {
   return {
     type: 'Submarine',
+    workingParts: 3,
   };
 }
 
 function PatrolBoat() {
   return {
     type: 'Patrol Boat',
+    workingParts: 2,
   };
 }
 
