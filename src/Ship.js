@@ -14,7 +14,9 @@ function Ship(type) {
 }
 
 function hit() {
-
+  if (this.workingParts === 0) return false;
+  this.workingParts -= 1;
+  return true;
 }
 
 function Carrier() {
