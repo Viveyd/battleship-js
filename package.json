@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha ./tests",
     "builder": "webpack",
-    "server": "webpack serve --open"
+    "server": "webpack serve --open",
+    "mocha-watcher": "mocha --watch ./tests"
   },
   "keywords": [],
   "author": "",

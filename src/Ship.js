@@ -1,3 +1,5 @@
-export default function Ship() {
-
+function Ship() {
+  return { };
 }
+
+module.exports = Ship;
