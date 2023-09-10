@@ -10,7 +10,11 @@ function Ship(type) {
   if (!type) return null;
   const lcType = type.toLowerCase();
   if (!shipList[lcType]) return null;
-  return { ...shipList[lcType]() };
+  return { ...shipList[lcType](), hit };
+}
+
+function hit() {
+
 }
 
 function Carrier() {

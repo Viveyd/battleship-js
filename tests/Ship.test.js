@@ -14,4 +14,11 @@ describe('Ship()', () => {
     assert.equal(Ship('SupaShip'), null);
     assert.equal(Ship('Titanic'), null);
   });
+  it('has hit() method', () => {
+    assert.ok(Ship('carrier').hit);
+  });
+
+  it('num of parts according to type', () => {
+    assert.ok(Ship('carrier').hit);
+  });
 });
