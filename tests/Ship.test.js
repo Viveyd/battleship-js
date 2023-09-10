@@ -40,4 +40,17 @@ describe('Ship()', () => {
     assert.equal(Ship('Submarine').workingParts, 3);
     assert.equal(Ship('Patrol Boat').workingParts, 2);
   });
+
+  it('isSunk() method works', () => {
+    const ship1 = Ship('carrier');
+    ship1.hit();
+    ship1.hit();
+    ship1.hit();
+    const ship2 = Ship('submarine');
+    ship2.hit();
+    ship2.hit();
+    ship2.hit();
+    assert.equal(ship1.isSunk(), false);
+    assert.equal(ship2.isSunk(), true);
+  });
 });

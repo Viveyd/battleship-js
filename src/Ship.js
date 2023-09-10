@@ -6,17 +6,21 @@ const shipList = {
   'patrol boat': PatrolBoat,
 };
 
-function Ship(type) {
-  if (!type) return null;
-  const lcType = type.toLowerCase();
-  if (!shipList[lcType]) return null;
-  return { ...shipList[lcType](), hit };
+function isSunk() {
+  return this.workingParts === 0;
 }
 
 function hit() {
   if (this.workingParts === 0) return false;
   this.workingParts -= 1;
   return true;
+}
+
+function Ship(type) {
+  if (!type) return null;
+  const lcType = type.toLowerCase();
+  if (!shipList[lcType]) return null;
+  return { ...shipList[lcType](), hit, isSunk };
 }
 
 function Carrier() {
