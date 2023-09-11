@@ -1,5 +1,5 @@
 function Gameboard() {
-  return { placeAt };
+  return { placeAt, receiveAttack };
 }
 
 function placeAt(obj, coords) {
@@ -11,6 +11,17 @@ function placeAt(obj, coords) {
       };
     });
   }
+}
+
+function receiveAttack(coord) {
+  if (this[coord]) {
+    if (this[coord].hit) return false;
+    this[coord].occupier.hit();
+    this[coord].hit = true;
+    return true;
+  }
+  this[coord] = { occupier: null, hit: true };
+  return true;
 }
 
 module.exports = Gameboard;
