@@ -20,6 +20,9 @@ describe('Gameboard', () => {
 
     gb.placeAt({ type: 'testObj3', workingParts: 5 }, ['e3', 'd3', 'c3', 'b3', 'a3']);
     assert.deepEqual([gb.e3, gb.b3], [undefined, undefined], 'does not map coords to object if coord already taken');
+
+    gb.placeAt({ type: 'testObj4', workingParts: 4 }, ['b1', 'b2', 'b3', 'b4']);
+    assert.deepEqual(gb.placedShips, [{ type: 'testObj', workingParts: 3 }, { type: 'testObj4', workingParts: 4 }], 'store reference of placed ships in Array placedShips');
   });
 
   it('.receiveAttack() works', () => {

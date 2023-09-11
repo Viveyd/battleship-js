@@ -1,5 +1,5 @@
 function Gameboard() {
-  return { placeAt, receiveAttack };
+  return { placedShips: [], placeAt, receiveAttack };
 }
 
 function placeAt(obj, coords) {
@@ -10,6 +10,7 @@ function placeAt(obj, coords) {
         hit: false,
       };
     });
+    this.placedShips.push(obj);
   }
 }
 
