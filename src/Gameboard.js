@@ -1,5 +1,7 @@
 function Gameboard() {
-  return { placedShips: [], placeAt, receiveAttack };
+  return {
+    placedShips: [], placeAt, receiveAttack, allShipsDown,
+  };
 }
 
 function placeAt(obj, coords) {
@@ -23,6 +25,10 @@ function receiveAttack(coord) {
   }
   this[coord] = { occupier: null, hit: true };
   return true;
+}
+
+function allShipsDown() {
+  return this.placedShips.length === 0 || this.placedShips.every((ship) => ship.workingParts === 0);
 }
 
 module.exports = Gameboard;

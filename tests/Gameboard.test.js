@@ -46,4 +46,14 @@ describe('Gameboard', () => {
     gb.receiveAttack('a3');
     assert.equal(testShip.workingParts, 1, 'calls hit method of ship if valid');
   });
+
+  it('Gameboard.allShipsDown() works', () => {
+    const gb = Gameboard();
+    assert.equal(typeof gb.allShipsDown, 'function', 'is a method of Gameboard');
+    assert.equal(gb.allShipsDown(), true, 'returns true when placedShips empty');
+    gb.placedShips.push({ workingParts: 5 });
+    assert.equal(gb.allShipsDown(), false, 'returns false if placedShips contains ships with working parts');
+    gb.placedShips = [{ workingParts: 0 }, { workingParts: 0 }];
+    assert.equal(gb.allShipsDown(), true, 'returns true if all placedShips has no working parts');
+  });
 });
