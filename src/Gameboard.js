@@ -1,6 +1,6 @@
 function Gameboard() {
   return {
-    placedShips: [], placeAt, receiveAttack, allShipsDown,
+    placedShips: [], attackLogs: [], placeAt, receiveAttack, allShipsDown,
   };
 }
 
@@ -21,10 +21,16 @@ function receiveAttack(coord) {
     if (this[coord].hit) return false;
     this[coord].occupier.hit();
     this[coord].hit = true;
+    logger(this[coord], this.attackLogs);
     return true;
   }
   this[coord] = { occupier: null, hit: true };
+  logger(this[coord], this.attackLogs);
   return true;
+}
+
+function logger(msg, logStorage) {
+  logStorage.push(msg);
 }
 
 function allShipsDown() {

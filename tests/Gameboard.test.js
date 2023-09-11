@@ -45,6 +45,7 @@ describe('Gameboard', () => {
     gb.a4 = { occupier: testShip, hit: false };
     gb.receiveAttack('a3');
     assert.equal(testShip.workingParts, 1, 'calls hit method of ship if valid');
+    assert.deepEqual(gb.attackLogs, [gb.a2, gb.a3], 'logs successful attacks');
   });
 
   it('Gameboard.allShipsDown() works', () => {
