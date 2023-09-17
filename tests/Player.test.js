@@ -23,4 +23,11 @@ describe('Player', () => {
     assert.ok(player1.autoAttack, 'expects .autoAttack()');
     assert.ok(!player1.attack, 'unexpected .attack()');
   });
+
+  it('has attack method', () => {
+    const player1 = Player('john', 'human');
+    const player2 = Player('doe', 'computer');
+    assert.ok(player1.attack, 'expected method');
+    // assert.equal(player1.attack(player2, 'a3'), , 'expected to call board.hit(a3)');
+  });
 });
