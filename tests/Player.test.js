@@ -7,10 +7,20 @@ describe('Player', () => {
     assert.equal(Array.isArray(Player()), false, 'is not an array');
   });
 
-  it('has following properties defined', () => {
-    const player1 = Player('john', 'computer');
-    assert.ok(player1.name, '.name');
-    assert.ok(player1.type, '.type');
+  it('creates human player', () => {
+    const player1 = Player('john', 'human');
+    assert.equal(player1.name, 'john', '.name');
+    assert.equal(player1.type, 'human', '.type');
     assert.equal(player1.score, 0, '.score');
+    assert.ok(player1.attack, 'expects .attack()');
+  });
+
+  it('creates computer player', () => {
+    const player1 = Player('john', 'computer');
+    assert.equal(player1.name, 'john', '.name');
+    assert.equal(player1.type, 'computer', '.type');
+    assert.equal(player1.score, 0, '.score');
+    assert.ok(player1.autoAttack, 'expects .autoAttack()');
+    assert.ok(!player1.attack, 'unexpected .attack()');
   });
 });
