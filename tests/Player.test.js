@@ -1,4 +1,5 @@
-const assert = require('assert');
+const { assert } = require('chai');
+const sinon = require('sinon');
 const Player = require('../src/Player');
 
 describe('Player', () => {
