@@ -22,8 +22,9 @@ function Computer() {
   };
 }
 
-function autoAttack() {
-
+function autoAttack(player) {
+  if (!player.board) return;
+  player.board.hit();
 }
 
 function attack(player, target) {
