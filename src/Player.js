@@ -1,10 +1,10 @@
 const mapping = { human: Human, computer: Computer };
 
-function Player(name, type = 'generic', score = 0) {
+function Player(name, type = 'generic', score = 0, board = null) {
   const processedType = type.trim().toLowerCase();
   const extraProps = mapping[processedType] ? mapping[processedType]() : {};
   return {
-    name, type, score, ...extraProps,
+    name, type, board, score, ...extraProps,
   };
 }
 
@@ -26,8 +26,8 @@ function autoAttack() {
 
 }
 
-function attack() {
-
+function attack(player, target) {
+  player.board.hit(target);
 }
 
 module.exports = Player;

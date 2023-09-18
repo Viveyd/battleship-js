@@ -21,14 +21,18 @@ describe('Player', () => {
     assert.equal(player1.name, 'john', '.name');
     assert.equal(player1.type, 'computer', '.type');
     assert.equal(player1.score, 0, '.score');
-    assert.ok(player1.autoAttack, 'expects .autoAttack()');
-    assert.ok(!player1.attack, 'unexpected .attack()');
+    assert.exists(player1.autoAttack, 'expects .autoAttack()');
+    assert.exists(!player1.attack, 'unexpected .attack()');
   });
 
   it('has attack method', () => {
     const player1 = Player('john', 'human');
     const player2 = Player('doe', 'computer');
-    assert.ok(player1.attack, 'expected method');
-    // assert.equal(player1.attack(player2, 'a3'), , 'expected to call board.hit(a3)');
+    assert.exists(player1.attack, 'expected method');
+
+    const mockFn = sinon.fake();
+    player2.board = { hit: mockFn };
+    player1.attack(player2, 'a3');
+    assert.isTrue(mockFn.calledWith('a3'), 'expected to call board.hit(a3)');
   });
 });
