@@ -28,6 +28,9 @@ function Computer() {
 function autoAttack(player) {
   if (!player.board || player.board.allShipsDown()) return;
   if (attackQueue.length === 0) initAttackQueue(player.board.size);
+  let referenceQueue = priorityQueue.length ? priorityQueue: attackQueue;
+  let potentialTarget = referenceQueue.pop();
+  while(potentialTarget ===)
 }
 
 function initAttackQueue([xSize, ySize]) {
