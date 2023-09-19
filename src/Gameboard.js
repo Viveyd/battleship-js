@@ -1,7 +1,18 @@
-function Gameboard() {
+function Gameboard(size) {
+  const tiles = initTiles(size);
   return {
-    placedShips: [], attackLogs: [], placeAt, receiveAttack, allShipsDown,
+    placedShips: [], attackLogs: [], tiles, placeAt, receiveAttack, allShipsDown,
   };
+}
+
+function initTiles([numOfCols, numOfRows]) {
+  const tiles = {};
+  for (let colCounter = 1; colCounter <= numOfCols; colCounter += 1) {
+    for (let rowCounter = 1; rowCounter <= numOfRows; rowCounter += 1) {
+      tiles[`${colCounter},${rowCounter}`] = { hit: false };
+    }
+  }
+  return tiles;
 }
 
 function placeAt(obj, coords) {
