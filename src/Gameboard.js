@@ -1,31 +1,35 @@
-function Gameboard() {
+function Gameboard(size) {
+  const tiles = initTiles(size);
   return {
-    placedShips: [], attackLogs: [], placeAt, receiveAttack, allShipsDown,
+    placedShips: [], attackLogs: [], tiles, placeAt, receiveAttack, allShipsDown,
   };
 }
 
+function initTiles([numOfCols, numOfRows]) {
+  const tiles = {};
+  for (let colCounter = 1; colCounter <= numOfCols; colCounter += 1) {
+    for (let rowCounter = 1; rowCounter <= numOfRows; rowCounter += 1) {
+      tiles[`${colCounter},${rowCounter}`] = { hit: false };
+    }
+  }
+  return tiles;
+}
+
 function placeAt(obj, coords) {
-  if (obj.workingParts === coords.length && coords.every((coord) => !this[coord])) {
-    coords.forEach((coord) => {
-      this[coord] = {
-        occupier: obj,
-        hit: false,
-      };
+  if (obj.workingParts === coords.length && coords.every(([x, y]) => !this.tiles[`${x},${y}`].occupier)) {
+    coords.forEach(([x, y]) => {
+      this.tiles[`${x},${y}`].occupier = obj;
     });
     this.placedShips.push(obj);
   }
 }
 
-function receiveAttack(coord) {
-  if (this[coord]) {
-    if (this[coord].hit) return false;
-    this[coord].occupier.hit();
-    this[coord].hit = true;
-    logger(this[coord], this.attackLogs);
-    return true;
-  }
-  this[coord] = { occupier: null, hit: true };
-  logger(this[coord], this.attackLogs);
+function receiveAttack([x, y]) {
+  const receiver = this.tiles[`${x},${y}`];
+  if (receiver.hit) return false;
+  if (receiver.occupier)receiver.occupier.hit();
+  receiver.hit = true;
+  logger(receiver, this.attackLogs);
   return true;
 }
 
