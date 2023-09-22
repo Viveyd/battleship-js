@@ -1,6 +1,5 @@
 const { assert } = require('chai');
 const sinon = require('sinon');
-const { mock } = require('node:test');
 const Player = require('../src/Player');
 
 describe('Player', () => {
@@ -43,7 +42,7 @@ describe('Player', () => {
     assert.exists(player1.autoAttack, 'expected method');
 
     const mockFn = sinon.mock();
-    player2.board = { receiveAttack: mockFn };
+    player2.board = { receiveAttack: mockFn, allShipsDown: () => false };
     player1.autoAttack(player2);
     assert.isTrue(mockFn.called, 'expected player2.board.hit to be called');
     sinon.reset(mockFn);
@@ -52,7 +51,9 @@ describe('Player', () => {
     player1.autoAttack(player2);
     assert.isFalse(mockFn.called, 'expected player2.board.hit to NOT be called');
 
-    player2.board = { receiveAttack: mockFn, size: [1, 1], '1,1': { test: true } };
+    player2.board = {
+      receiveAttack: mockFn, size: [1, 1], tiles: { '1,1': { test: true } }, allShipsDown: () => true,
+    };
     player1.autoAttack(player2);
     assert.isFalse(mockFn.called, 'expected player2.board.hit to NOT be called when no possible moves');
   });

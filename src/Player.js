@@ -28,9 +28,23 @@ function Computer() {
 function autoAttack(player) {
   if (!player.board || player.board.allShipsDown()) return;
   if (attackQueue.length === 0) initAttackQueue(player.board.size);
-  let referenceQueue = priorityQueue.length ? priorityQueue: attackQueue;
+  let referenceQueue = priorityQueue.length ? priorityQueue : attackQueue;
   let potentialTarget = referenceQueue.pop();
-  while(potentialTarget ===)
+  while (Player.board.tiles[potentialTarget].hit) {
+    if (!referenceQueue.length && referenceQueue === priorityQueue) {
+      referenceQueue = attackQueue;
+    } else if (!referenceQueue.length) {
+      return;
+    }
+    potentialTarget = referenceQueue.pop();
+  }
+  const targetHit = player.board.receiveAttack(potentialTarget);
+  if (targetHit) {
+    priorityQueue.push(`${potentialTarget[0] - 1},${potentialTarget[1]}`);
+    priorityQueue.push(`${potentialTarget[0] + 1},${potentialTarget[1]}`);
+    priorityQueue.push(`${potentialTarget[0]},${potentialTarget[1] - 1}`);
+    priorityQueue.push(`${potentialTarget[0]},${potentialTarget[1] + 1}`);
+  }
 }
 
 function initAttackQueue([xSize, ySize]) {
